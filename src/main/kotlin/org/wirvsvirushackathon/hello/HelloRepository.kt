@@ -11,7 +11,7 @@ class HelloRepository constructor(val jdbcTemplate: JdbcTemplate) {
     fun findById(id: Long): Hello? = jdbcTemplate.queryForObject(
             "SELECT * FROM person WHERE id = ?",
             RowMapper { rs: ResultSet, _: Int ->
-                Hello(rs.getString("NAME"))
+                Hello(rs.getLong("ID").toString())
             }, id
     )
 }
