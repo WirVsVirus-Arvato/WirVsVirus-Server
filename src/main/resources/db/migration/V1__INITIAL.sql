@@ -17,7 +17,7 @@ CREATE TABLE questionnaire(
 CREATE TABLE question(
     id BIGSERIAL PRIMARY KEY,
     questionnaire_id BIGINT NOT NULL REFERENCES questionnaire(id),
-    type BIGINT NOT NULL,
+    type_id BIGINT NOT NULL,
     text_id BIGINT NOT NULL REFERENCES text_lang(id)
 );
 
