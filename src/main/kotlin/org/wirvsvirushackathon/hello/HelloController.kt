@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/hello")
-class HelloController {
+class HelloController (val helloService: HelloService) {
+
     @GetMapping
-    fun hello(@RequestParam(value = "name", defaultValue = "World") name: String) =
-            Hello("Hello $name")
+    fun hello(@RequestParam(value = "name", defaultValue = "World") name: String) = helloService.findHelloById(1)
 }
