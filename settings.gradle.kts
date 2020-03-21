@@ -1,1 +1,1 @@
-rootProject.name = "spring-kotlin-starter"
+rootProject.name = "corona-app-server"
