@@ -27,7 +27,7 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
             return jdbcTemplate.queryForObject(
                     "SELECT * FROM people WHERE token = :token",
                     MapSqlParameterSource().addValue("token", token),
-                    ({ resultSet, i -> peopleRowMapper(resultSet) })
+                    ({ resultSet, _ -> peopleRowMapper(resultSet) })
             )
         } catch (e: EmptyResultDataAccessException) {
             return null
