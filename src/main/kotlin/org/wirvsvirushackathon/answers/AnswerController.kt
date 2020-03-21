@@ -9,4 +9,8 @@ class AnswerController (val answerService: AnswerService) {
 
     @PostMapping
     fun hello(answer: AnswerInputDTO) = answerService.inserAnswer(answer)
+
+    @GetMapping
+    fun getAnswers(@RequestParam token: String) = answerService.getAnswersByPeopleToken(token)
+
 }

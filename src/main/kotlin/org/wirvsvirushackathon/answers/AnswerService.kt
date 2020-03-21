@@ -7,4 +7,7 @@ import org.wirvsvirushackathon.questionnaire.QuestionnaireRepository
 class AnswerService (val answerRepository: AnswerRepository) {
 
     fun inserAnswer(answer: AnswerInputDTO) =  answerRepository.insertAnswer(answer)
+
+    fun getAnswersByPeopleToken(token: String) =
+        answerRepository.getAnswersByPeopleToken(token)
 }
