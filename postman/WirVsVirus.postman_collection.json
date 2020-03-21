@@ -9,9 +9,23 @@
 			"name": "GET person",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
-					"raw": ""
+					"raw": "{{virus-domain}}/people/{{token}}",
+					"host": [
+						"{{virus-domain}}"
+					],
+					"path": [
+						"people",
+						"{{token}}"
+					]
 				}
 			},
 			"response": []
@@ -79,6 +93,44 @@
 							"key": "id",
 							"value": "{{question-id}}"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{virus-domain}}/people/{{token}}/activate",
+					"host": [
+						"{{virus-domain}}"
+					],
+					"path": [
+						"people",
+						"{{token}}",
+						"activate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{virus-domain}}/people/{{token}}/deactivate",
+					"host": [
+						"{{virus-domain}}"
+					],
+					"path": [
+						"people",
+						"{{token}}",
+						"deactivate"
 					]
 				}
 			},

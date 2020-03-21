@@ -31,4 +31,10 @@ class PeopleService(val peopleRepository: PeopleRepository) {
 
         return builder.toString()
     }
+
+    fun activateByToken(token: String) =
+            peopleRepository.setStatus(token, PeopleStatus.ACTIVE)
+
+    fun deactivateByToken(token: String) =
+            peopleRepository.setStatus(token, PeopleStatus.INACTIVE)
 }

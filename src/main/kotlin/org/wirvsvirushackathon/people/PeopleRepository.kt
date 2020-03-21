@@ -53,6 +53,15 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
                     Int::class.java
             ) == 1
 
+    fun setStatus(token: String, status: PeopleStatus) =
+            jdbcTemplate.update(
+                    "UPDATE people SET  status = :status WHERE token = :token",
+                    MapSqlParameterSource()
+                            .addValue("token", token)
+                            .addValue("status", status.name)
+            )
+
+
     private fun peopleRowMapper(resultSet: ResultSet) =
             People(
                     id= resultSet.getLong("id"),
@@ -61,4 +70,5 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
                     creationTimestamp = resultSet.getTimestamp("creation_timestamp").toInstant().atZone(ZoneId.systemDefault())
 //                    location = resultSet.getObject("location", Point::class.java)
             )
+
 }
