@@ -58,11 +58,14 @@ tasks.withType<KotlinCompile> {
     }
 }
 tasks.getByName<Jar>("jar") {
-    enabled = true
+    manifest {
+        attributes["Main-Class"] = "org.wirvsvirushackathon.CoronaApplication"
+    }
 }
 
 tasks.getByName<BootJar>("bootJar") {
     enabled = true
+
 }
 
 publishing {
