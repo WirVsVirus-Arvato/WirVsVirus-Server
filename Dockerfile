@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-alpine
+FROM openjdk:11-jdk-slim
 
 RUN addgroup -S spring && adduser -S spring -G spring
 USER spring:spring
