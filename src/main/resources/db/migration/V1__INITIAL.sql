@@ -4,11 +4,6 @@ CREATE TABLE text_lang(
     text TEXT NOT NULL
 );
 
-CREATE TABLE person(
-    id BIGSERIAL PRIMARY KEY,
-    uuid VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE questionnaire(
     id BIGSERIAL PRIMARY KEY,
     title BIGINT NOT NULL REFERENCES text_lang(id)
