@@ -9,6 +9,7 @@ plugins {
     kotlin("plugin.spring") version "1.3.61"
 
     id("groovy")
+    `maven-publish`
 }
 
 group = "dev.caspar"
@@ -51,5 +52,23 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/WirVsVirus-Arvato/WirVsVirus-Server")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("default") {
+            from(components["java"])
+        }
     }
 }
