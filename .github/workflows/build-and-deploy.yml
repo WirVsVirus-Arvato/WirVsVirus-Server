@@ -19,8 +19,8 @@ jobs:
           java-version: 11.0.4
       - name: Build with Gradle
         run: ./gradlew clean build -x test
-      - name: Maven Verify
-        run: ./gradlew clean verify
+      - name: Gradle Check
+        run: ./gradlew clean check
 
   artifact:
     name: Publish - GitHub Packages
