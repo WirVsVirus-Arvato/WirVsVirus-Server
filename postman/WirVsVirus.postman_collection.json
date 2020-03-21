@@ -60,6 +60,29 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Questionnaire",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{virus-domain}}/questionnaire?id={{question-id}}",
+					"host": [
+						"{{virus-domain}}"
+					],
+					"path": [
+						"questionnaire"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{question-id}}"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
