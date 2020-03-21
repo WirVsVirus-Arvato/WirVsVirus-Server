@@ -1,4 +1,4 @@
-CREATE TABLE infected_people
+CREATE TABLE people
 (
     id    BIGSERIAL PRIMARY KEY,
     token VARCHAR(9) NOT NULL

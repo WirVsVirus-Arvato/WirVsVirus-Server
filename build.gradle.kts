@@ -27,6 +27,9 @@ dependencies {
     implementation("org.postgresql:postgresql:42.2.8")
     implementation("org.flywaydb:flyway-core")
 
+    implementation("io.springfox:springfox-swagger2:2.9.2")
+    implementation("io.springfox:springfox-swagger-ui:2.9.2")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.codehaus.groovy:groovy-all:2.5.7")
     testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")

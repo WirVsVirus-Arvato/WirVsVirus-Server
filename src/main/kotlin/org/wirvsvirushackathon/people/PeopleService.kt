@@ -1,20 +1,20 @@
-package org.wirvsvirushackathon.infectedpeople
+package org.wirvsvirushackathon.people
 
 import org.springframework.stereotype.Service
 
 @Service
-class InfectedPeopleService(val infectedPeopleRepository: InfectedPeopleRepository) {
+class PeopleService(val peopleRepository: PeopleRepository) {
     val tokenChars: String = "ABCDEFGHIJKMNPQRSTUVWXYZ0123456789"
 
-    fun createNewInfectedPeople(): InfectedPeople {
+    fun createNewInfectedPeople(): People {
         var tokenExists = true
         var token: String = ""
         while (tokenExists) {
             token = generateToken()
-            tokenExists = infectedPeopleRepository.tokenAlreadyExists(token)
+            tokenExists = peopleRepository.tokenAlreadyExists(token)
         }
 
-        return infectedPeopleRepository.create(token)
+        return peopleRepository.create(token)
     }
 
     private fun generateToken(): String {
