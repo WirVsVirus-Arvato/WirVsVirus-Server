@@ -32,6 +32,8 @@ dependencies {
     implementation("io.springfox:springfox-swagger2:2.9.2")
     implementation("io.springfox:springfox-swagger-ui:2.9.2")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.codehaus.groovy:groovy-all:2.5.7")
     testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
