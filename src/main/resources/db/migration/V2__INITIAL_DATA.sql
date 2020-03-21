@@ -6,14 +6,14 @@ INSERT INTO text_lang (id, language_id, "text") values
 (5, 1,'Wie geht es ihnen heute?'),
 (6, 1,'Husten sie?');
 
-INSERT INTO questionnaire(id, text_id) VALUES
+INSERT INTO questionnaire(id, title) VALUES
 (1,1),
 (2,4);
 
-INSERT INTO question(id, questionnaire_id, type_id, text_id) VALUES
-(1,1,1,2),
-(2,1,1,3),
-(3,1,1,5),
-(4,1,1,6);
+INSERT INTO question(id, questionnaire_id, question_text) VALUES
+(1,1,2),
+(2,1,3),
+(3,1,5),
+(4,1,6);
 
 

@@ -11,14 +11,16 @@ CREATE TABLE person(
 
 CREATE TABLE questionnaire(
     id BIGSERIAL PRIMARY KEY,
-    text_id BIGINT NOT NULL REFERENCES text_lang(id)
+    title BIGINT NOT NULL REFERENCES text_lang(id)
 );
+
+CREATE TYPE question_type AS ENUM ('NUMERIC10');
 
 CREATE TABLE question(
     id BIGSERIAL PRIMARY KEY,
     questionnaire_id BIGINT NOT NULL REFERENCES questionnaire(id),
-    type_id BIGINT NOT NULL,
-    text_id BIGINT NOT NULL REFERENCES text_lang(id)
+    type question_type NOT NULL DEFAULT 'NUMERIC10',
+    question_text BIGINT NOT NULL REFERENCES text_lang(id)
 );
 
 
