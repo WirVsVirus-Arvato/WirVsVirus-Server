@@ -1,5 +1,6 @@
 import org.flywaydb.gradle.FlywayExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("org.springframework.boot") version "2.2.5.RELEASE"
@@ -9,10 +10,10 @@ plugins {
     kotlin("plugin.spring") version "1.3.61"
 
     id("groovy")
-    `maven-publish`
+    id("maven-publish")
 }
 
-group = "dev.caspar"
+group = "org.wirvsvirushackathon"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -54,6 +55,13 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+tasks.getByName<Jar>("jar") {
+    enabled = true
+}
+
+tasks.getByName<BootJar>("bootJar") {
+    enabled = true
+}
 
 publishing {
     repositories {
@@ -67,7 +75,7 @@ publishing {
         }
     }
     publications {
-        create<MavenPublication>("default") {
+        register<MavenPublication>("gpr") {
             from(components["java"])
         }
     }
