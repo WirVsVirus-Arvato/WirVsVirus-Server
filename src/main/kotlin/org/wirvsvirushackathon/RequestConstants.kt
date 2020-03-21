@@ -1,3 +1,3 @@
 package org.wirvsvirushackathon
 
-const val HEADER_USER_TOKEN = "token"
+const val USER_TOKEN = "token"
