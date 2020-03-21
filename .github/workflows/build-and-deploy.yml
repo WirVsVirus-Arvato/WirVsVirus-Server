@@ -41,6 +41,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the docker image
         run: |
-          docker login docker.pkg.github.com -u ${{ secrets.GITHUB_ACTOR }} -p ${{ secrets.GITHUB_TOKEN }}
+          docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
           docker build . --file Dockerfile --tag docker.pkg.github.com/WirVsVirus-Arvato/WirVsVirus-Server/server:latest --tag docker.pkg.github.com/WirVsVirus-Arvato/WirVsVirus-Server/server:$(date +%s)
           docker push docker.pkg.github.com/WirVsVirus-Arvato/WirVsVirus-Server/server
