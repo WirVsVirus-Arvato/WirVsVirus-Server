@@ -17,6 +17,9 @@ class PeopleService(val peopleRepository: PeopleRepository) {
         return peopleRepository.create(token)
     }
 
+    fun getPeopleByToken(token: String) =
+            peopleRepository.getPeopleByToken(token)
+
     private fun generateToken(): String {
         val builder = StringBuilder()
         var count = 6
