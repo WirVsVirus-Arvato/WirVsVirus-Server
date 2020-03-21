@@ -35,10 +35,6 @@ jobs:
           java-version: 11.0.4
       - name: Gradle Build
         run: ./gradlew clean build
-      - name: Display content
-        run: ls -la
-      - name: Display content
-        run: ls -la ./build/libs
       - name: Publish artifact on GitHub Packages
         run: ./gradlew publish
         env:
