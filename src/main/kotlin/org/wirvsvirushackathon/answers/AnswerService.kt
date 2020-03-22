@@ -1,10 +1,22 @@
 package org.wirvsvirushackathon.answers
 
 import org.springframework.stereotype.Service
-import org.wirvsvirushackathon.questionnaire.QuestionnaireRepository
 
 @Service
-class AnswerService (val answerRepository: AnswerRepository) {
+class AnswerService(val answerRepository: AnswerRepository) {
 
-    fun inserAnswer(answer: AnswerInputDTO) =  answerRepository.insertAnswer(answer)
+    fun insertAnswer(answer: AnswerInputDTO) = answerRepository.insertAnswer(answer)
+
+    fun getAnswersByPeopleToken(token: String) =
+            answerRepository.getAnswersByPeopleToken(token)
+
+    fun getListOfAnswersFromMultipleTokens(tokens: List<String>): ArrayList<AnswerListDto> {
+        val answers: ArrayList<AnswerListDto> = arrayListOf()
+
+        tokens.forEach {
+            answers.add(AnswerListDto(it, answerRepository.getAnswersByPeopleToken(it)))
+        }
+
+        return answers
+    }
 }

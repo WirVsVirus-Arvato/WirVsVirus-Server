@@ -5,14 +5,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.stereotype.Repository
-import java.awt.Point
 import java.sql.ResultSet
 import java.time.ZoneId
 
 @Repository
 class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
 
-    fun create(token: String): People {
+    fun create(token: String): TokenDto {
         val key = GeneratedKeyHolder()
         jdbcTemplate.update(
                 "INSERT INTO people (token) VALUES (:token)",
@@ -21,7 +20,7 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
         )
 
         val id: Long = key.keys?.get("id") as Long
-        return getPeopleById(id)
+        return TokenDto(token)
     }
 
     fun getPeopleByToken(token: String): People {
@@ -29,7 +28,7 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
             return jdbcTemplate.queryForObject(
                     "SELECT * FROM people WHERE token = :token",
                     MapSqlParameterSource().addValue("token", token))
-                    { resultSet, _ -> peopleRowMapper(resultSet) } ?: throw PeopleNotExistsException(token)
+            { resultSet, _ -> peopleRowMapper(resultSet) } ?: throw PeopleNotExistsException(token)
         } catch (e: EmptyResultDataAccessException) {
             throw PeopleNotExistsException(token)
         }
@@ -64,7 +63,7 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
 
     private fun peopleRowMapper(resultSet: ResultSet) =
             People(
-                    id= resultSet.getLong("id"),
+                    id = resultSet.getLong("id"),
                     token = resultSet.getString("token"),
                     status = PeopleStatus.valueOf(resultSet.getString("status")),
                     creationTimestamp = resultSet.getTimestamp("creation_timestamp").toInstant().atZone(ZoneId.systemDefault())

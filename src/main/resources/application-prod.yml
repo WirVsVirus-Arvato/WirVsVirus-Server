@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db/corona-app
+    username: root
+    password: pw
+
+  flyway:
+    url: jdbc:postgresql://db/corona-app
+    user: root
+    password: pw
+
+server:
+  servlet:
+    context-path: /api
