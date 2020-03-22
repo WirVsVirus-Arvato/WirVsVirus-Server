@@ -8,3 +8,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/corona-app
     user: root
     password: pw
+
+server:
+  servlet:
+    context-path: /api

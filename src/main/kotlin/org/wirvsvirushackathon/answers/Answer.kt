@@ -9,6 +9,11 @@ data class Answer(
         val timestamp: ZonedDateTime
 )
 
+data class AnswerListDto(
+        val token: String,
+        val answers: List<Answer>
+)
+
 data class AnswerInputDTO(
         val questionId: Long,
         val peopleId: Long,

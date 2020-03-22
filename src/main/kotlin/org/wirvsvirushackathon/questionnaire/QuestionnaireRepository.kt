@@ -15,19 +15,20 @@ class QuestionnaireRepository constructor(
             "SELECT * FROM questionnaire WHERE id = ?",
             RowMapper { rs: ResultSet, _: Int ->
                 Questionnaire(rs.getLong("id"),
-                         textRepository.findById(rs.getLong("title")),
-                        findQuestionsByQuestionaireId(1)
-                        )
+                        textRepository.findById(rs.getLong("title")),
+                        findQuestionsByQuestionnaireId(1)
+                )
             }, id
     )
-    fun findQuestionsByQuestionaireId(id: Long): List<Question> = jdbcTemplate.query(
-    "SELECT * FROM question WHERE questionnaire_id = ?",
-    RowMapper { rs: ResultSet, _: Int ->
-        Question(rs.getLong("id"),
-               QuestionType.valueOf(rs.getString("type")),
-                textRepository.findById(rs.getLong("question_text"))
-        )
-    }, id
+
+    fun findQuestionsByQuestionnaireId(id: Long): List<Question> = jdbcTemplate.query(
+            "SELECT * FROM question WHERE questionnaire_id = ?",
+            RowMapper { rs: ResultSet, _: Int ->
+                Question(rs.getLong("id"),
+                        QuestionType.valueOf(rs.getString("type")),
+                        textRepository.findById(rs.getLong("question_text"))
+                )
+            }, id
     )
 
 

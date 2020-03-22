@@ -1,16 +1,21 @@
 package org.wirvsvirushackathon.answers
 
 import org.springframework.web.bind.annotation.*
-import org.wirvsvirushackathon.questionnaire.QuestionnaireService
 
 @RestController
-@RequestMapping("/anwswer")
-class AnswerController (val answerService: AnswerService) {
+@RequestMapping("/answer")
+class AnswerController(val answerService: AnswerService) {
 
     @PostMapping
-    fun hello(answer: AnswerInputDTO) = answerService.inserAnswer(answer)
+    fun create(answer: AnswerInputDTO) = answerService.insertAnswer(answer)
 
     @GetMapping
     fun getAnswers(@RequestParam token: String) = answerService.getAnswersByPeopleToken(token)
+
+    @GetMapping("/collect")
+    fun getAnswersFromMultipleTokens(@RequestParam(name = "from") tokens: String): ArrayList<AnswerListDto> {
+        val tokenArray = tokens.split(',')
+        return answerService.getListOfAnswersFromMultipleTokens(tokenArray)
+    }
 
 }

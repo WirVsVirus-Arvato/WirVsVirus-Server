@@ -29,7 +29,7 @@ class PeopleService(val peopleRepository: PeopleRepository) {
             builder.append(tokenChars[character])
         }
 
-        return builder.toString()
+        return builder.toString().chunked(3).joinToString("-")
     }
 
     fun activateByToken(token: String) =

@@ -1,6 +1,5 @@
 package org.wirvsvirushackathon.people
 
-import java.awt.Point
 import java.time.ZonedDateTime
 
 data class People(
@@ -10,8 +9,8 @@ data class People(
         val creationTimestamp: ZonedDateTime
 )
 
-data class TokenDto (
-    val token: String
+data class TokenDto(
+        val token: String
 )
 
 enum class PeopleStatus {
