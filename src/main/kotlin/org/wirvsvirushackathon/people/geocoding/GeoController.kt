@@ -15,6 +15,6 @@ class GeoController(val geoService: GeoService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun resolveAndSaveGeocoding(@RequestBody geoInputDTO: GeoInputDTO): GeoOuputDTO = geoService.resolveSaveCoordinates(geoInputDTO)
+    fun resolveAndSaveGeocoding(@RequestBody geoInputDTO: GeoInputDTO,@PathVariable token: String): GeoOuputDTO = geoService.resolveSaveCoordinates(geoInputDTO, token)
 
 }
