@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db/corona-app
+    url: jdbc:postgresql://localhost/corona-app
     username: root
     password: pw
 
   flyway:
-    url: jdbc:postgresql://db/corona-app
+    url: jdbc:postgresql://localhost/corona-app
     user: root
     password: pw
 
