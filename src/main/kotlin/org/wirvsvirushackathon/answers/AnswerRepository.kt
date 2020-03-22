@@ -14,7 +14,7 @@ class AnswerRepository constructor(
     fun insertAnswer(answers: List<AnswerInputDTO>) {
         for (answer in answers) {
             jdbcTemplate.update(
-                    "INSERT INTO ANSWER (question_id, people_id, content) VALUES (?,(Select id from people where token = ?),?);",
+                    "INSERT INTO ANSWER (question_id, people_id,  multiple_choice_answer_ids) VALUES (?,(Select id from people where token = ?),?);",
                     answer.questionId, answer.token, answer.content
             )
         }
@@ -45,7 +45,7 @@ class AnswerRepository constructor(
                                  INNER JOIN text_lang t on q.question_text = t.id
                                  INNER JOIN questionnaire q2 on q.questionnaire_id = q2.id
                                  INNER JOIN multiple_choice_answer mca
-                                            on mca.answer = ANY (regexp_split_to_array(a.multiple_choice_answer_ids, ',')::bigint[])
+                                            on mca.id = ANY (regexp_split_to_array(a.multiple_choice_answer_ids, ',')::bigint[])
                                  INNER JOIN text_lang t2 on mca.answer = t2.id
                                  INNER JOIN people p on a.people_id = p.id
                         WHERE p.token = ?
