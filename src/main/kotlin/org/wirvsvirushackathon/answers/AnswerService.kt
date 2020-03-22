@@ -17,11 +17,11 @@ class AnswerService(val answerRepository: AnswerRepository) {
         tokens.forEach {
             val peopleAnswers = answerRepository.getInitialQuestionnaireAnswersByPeopleToken(it)
             val answerMap = mutableMapOf<String, List<AnswerWithQuestion>>()
-            peopleAnswers.forEach { it ->
-                val formattedDate = it.timestamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            peopleAnswers.forEach { it1 ->
+                val formattedDate = it1.timestamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                 val listForTime: ArrayList<AnswerWithQuestion> = (answerMap.get(formattedDate)
                         ?: mutableListOf<AnswerWithQuestion>()) as ArrayList<AnswerWithQuestion>
-                listForTime.add(AnswerWithQuestion(it.question, it.answer, it.timestamp))
+                listForTime.add(AnswerWithQuestion(it1.question, it1.answer, it1.timestamp))
 
                 answerMap.set(
                         formattedDate,
