@@ -33,8 +33,8 @@ class QuestionnaireRepository constructor(
                     question_type,
                     rs.getString("text")
             )
-        }else if(question_type == QuestionType.MULTIPLECHOICE){
-            MultipleChoiceQuestion(rs.getLong("id"),
+        }else if(question_type == QuestionType.MULTIPLECHOICE || question_type == QuestionType.SINGLECHOICE){
+            OptionQuestion(rs.getLong("id"),
                     question_type,
                     rs.getString("text"),
                     findChoices(rs.getLong("id"))

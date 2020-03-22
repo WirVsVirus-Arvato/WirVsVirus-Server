@@ -7,7 +7,7 @@ data class Question(
         override val title: String?
 ) : IQuestion
 
-data class MultipleChoiceQuestion(
+data class OptionQuestion(
         override val id: Long,
         override val type: QuestionType,
         override val title: String?,
@@ -22,5 +22,6 @@ interface IQuestion {
 
 enum class QuestionType {
     NUMERIC10,
-    MULTIPLECHOICE
+    MULTIPLECHOICE,
+    SINGLECHOICE
 }
