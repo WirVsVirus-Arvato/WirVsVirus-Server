@@ -5,11 +5,12 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.stereotype.Repository
+import org.wirvsvirushackathon.answers.AnswerRepository
 import java.sql.ResultSet
 import java.time.ZoneId
 
 @Repository
-class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
+class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate, val answerRepository: AnswerRepository) {
 
     fun create(token: String): TokenDto {
         val key = GeneratedKeyHolder()
@@ -66,7 +67,8 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate) {
                     id = resultSet.getLong("id"),
                     token = resultSet.getString("token"),
                     status = PeopleStatus.valueOf(resultSet.getString("status")),
-                    creationTimestamp = resultSet.getTimestamp("creation_timestamp").toInstant().atZone(ZoneId.systemDefault())
+                    creationTimestamp = resultSet.getTimestamp("creation_timestamp").toInstant().atZone(ZoneId.systemDefault()),
+                    initialQuestionnaireAnswers = answerRepository.getInitialQuestionnaireAnswersByPeopleToken(resultSet.getString("token"))
 //                    location = resultSet.getObject("location", Point::class.java)
             )
 

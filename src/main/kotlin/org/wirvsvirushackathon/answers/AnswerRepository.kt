@@ -21,7 +21,7 @@ class AnswerRepository constructor(
                 "SELECT question_id, content, timestamp " +
                         "FROM answer a " +
                         "INNER JOIN people p on a.people_id = p.id " +
-                        "where p.token = ?",
+                        "WHERE p.token = ?",
 
                 RowMapper { rs: ResultSet, _ ->
                     Answer(
@@ -31,4 +31,23 @@ class AnswerRepository constructor(
                     )
                 },
                 token).toList()
+
+    fun getInitialQuestionnaireAnswersByPeopleToken(token: String) =
+            jdbcTemplate.query(
+                    "SELECT question_id, content, timestamp " +
+                            "FROM answer a " +
+                            "INNER JOIN people p on a.people_id = p.id " +
+                            "INNER JOIN question q on a.question_id = q.id " +
+                            "INNER JOIN questionnaire qs on q.questionnaire_id = qs.id " +
+                            "WHERE p.token = ? " +
+                            "AND qs.id = 1",
+
+                    RowMapper { rs: ResultSet, _ ->
+                        Answer(
+                                questionId = rs.getLong("question_id"),
+                                content = rs.getString("content"),
+                                timestamp = rs.getTimestamp("timestamp").toInstant().atZone(ZoneId.systemDefault())
+                        )
+                    },
+                    token).toList()
 }
