@@ -15,7 +15,7 @@ class QuestionnaireRepository constructor(
     fun findById(id: Long): Questionnaire? = jdbcTemplate.queryForObject(
             "SELECT * FROM questionnaire WHERE id = ?",
             RowMapper { rs: ResultSet, _: Int ->
-                Questionnaire(rs.getLong("id"),
+                Questionnaire(id,
                          textRepository.findById(rs.getLong("title")),
                         findQuestionsByQuestionaireId(id)
                         )

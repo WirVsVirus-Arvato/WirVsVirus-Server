@@ -6,5 +6,5 @@ import org.wirvsvirushackathon.answers.AnswerRepository
 @Service
 class QuestionnaireService (val questionnaireRepository: QuestionnaireRepository) {
 
-    fun findQuestionaireById(id: Long) = questionnaireRepository.findById(id)
+    fun findQuestionnaireById(id: Long) = questionnaireRepository.findById(id)
 }
