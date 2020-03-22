@@ -14,7 +14,7 @@ class AnswerService(val answerRepository: AnswerRepository) {
         val answers: ArrayList<AnswerListDto> = arrayListOf()
 
         tokens.forEach {
-            answers.add(AnswerListDto(it, answerRepository.getAnswersByPeopleToken(it)))
+            answers.add(AnswerListDto(it, answerRepository.getInitialQuestionnaireAnswersByPeopleToken(it)))
         }
 
         return answers

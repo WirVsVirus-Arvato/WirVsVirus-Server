@@ -1,6 +1,6 @@
 package org.wirvsvirushackathon.people
 
-import org.wirvsvirushackathon.answers.Answer
+import org.wirvsvirushackathon.answers.AnswerWithQuestion
 import java.time.ZonedDateTime
 
 data class People(
@@ -8,7 +8,7 @@ data class People(
         val token: String,
         val status: PeopleStatus,
         val creationTimestamp: ZonedDateTime,
-        val initialQuestionnaireAnswers: List<Answer>
+        val initialQuestionnaireAnswers: List<AnswerWithQuestion>
 )
 
 data class TokenDto(
