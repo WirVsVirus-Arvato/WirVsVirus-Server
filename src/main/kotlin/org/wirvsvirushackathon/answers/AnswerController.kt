@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/answer")
 class AnswerController(val answerService: AnswerService) {
 
+
     @PostMapping
-    fun create(answer: AnswerInputDTO) = answerService.insertAnswer(answer)
+    fun create(@RequestBody answer: List<AnswerInputDTO>) = answerService.insertAnswer(answer)
 
     @GetMapping
     fun getAnswers(@RequestParam token: String) = answerService.getAnswersByPeopleToken(token)

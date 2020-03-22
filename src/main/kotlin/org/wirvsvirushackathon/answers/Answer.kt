@@ -22,6 +22,6 @@ data class AnswerListDto(
 
 data class AnswerInputDTO(
         val questionId: Long,
-        val peopleId: Long,
+        val token: String,
         val content: String
 )

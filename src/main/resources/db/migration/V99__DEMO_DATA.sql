@@ -48,7 +48,7 @@ Select insert_multiple_choices(1,'Leben sie mit anderen Menschen zusammen im Hau
 Select insert_multiple_choices(1,'Beschreiben sie ihre Wohnsituation?',array['Haus', 'Wohnung','Brücke'],'MULTIPLECHOICE');
 
 Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE')>;
+Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE');
 
 
 INSERT INTO answer (question_id, people_id, content, multiple_choice_answer_ids)

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 @Service
 class AnswerService(val answerRepository: AnswerRepository) {
 
-    fun insertAnswer(answer: AnswerInputDTO) = answerRepository.insertAnswer(answer)
+    fun insertAnswer(answer: List<AnswerInputDTO>) = answerRepository.insertAnswer(answer)
 
     fun getAnswersByPeopleToken(token: String) =
             answerRepository.getAnswersByPeopleToken(token)

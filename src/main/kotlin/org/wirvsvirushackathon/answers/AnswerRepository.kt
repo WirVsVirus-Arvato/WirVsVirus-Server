@@ -11,10 +11,14 @@ class AnswerRepository constructor(
         val jdbcTemplate: JdbcTemplate
 ) {
 
-    fun insertAnswer(answer: AnswerInputDTO) = jdbcTemplate.update(
-            "INSERT INTO ANSWER (question_id, people_id, content) VALUES (?,?,?);",
-            answer.questionId, answer.peopleId, answer.content
-    )
+    fun insertAnswer(answers: List<AnswerInputDTO>) {
+        for (answer in answers) {
+            jdbcTemplate.update(
+                    "INSERT INTO ANSWER (question_id, people_id, content) VALUES (?,(Select id from people where token = ?),?);",
+                    answer.questionId, answer.token, answer.content
+            )
+        }
+    }
 
     fun getAnswersByPeopleToken(token: String) =
             jdbcTemplate.query(
