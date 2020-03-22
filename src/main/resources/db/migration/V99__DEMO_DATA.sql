@@ -52,10 +52,10 @@ Select insert_multiple_choices(1,'Arbeiten sie derzeit mit anderen Menschen?',ar
 Select insert_multiple_choices(1,'Leben sie mit anderen Menschen zusammen im Haushalt?',array['Ja','Nein'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Beschreiben sie ihre Wohnsituation?',array['Haus', 'Wohnung'],'MULTIPLECHOICE');
 
-INSERT INTO answer (question_id, people_id, content)
-VALUES (1, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 1'),
-       (2, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 2'),
-       (3, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 3'),
-       (4, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 4'),
-       (1, (SELECT id FROM people WHERE token = 'IR4-1XT'), 'Anwort 5');
+INSERT INTO answer (question_id, people_id, content, multiple_choice_answer_ids)
+VALUES (1, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '1'),
+       (2, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '3'),
+       (3, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '12'),
+       (4, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '22'),
+       (1, (SELECT id FROM people WHERE token = 'IR4-1XT'), NULL, '2');
 

@@ -35,19 +35,23 @@ class AnswerRepository constructor(
     fun getInitialQuestionnaireAnswersByPeopleToken(token: String) =
             jdbcTemplate.query(
                     """
-                        SELECT t.text, a.content, a.timestamp
+                        SELECT t.text, string_agg(t2.text, ',') as mca_as_text, a.timestamp
                         FROM answer AS a
-                        INNER JOIN question q on a.question_id = q.id
-                        INNER JOIN text_lang t on q.question_text = t.id
-                        INNER JOIN questionnaire q2 on q.questionnaire_id = q2.id
-                        INNER JOIN people p on a.people_id = p.id
+                                 INNER JOIN question q on a.question_id = q.id
+                                 INNER JOIN text_lang t on q.question_text = t.id
+                                 INNER JOIN questionnaire q2 on q.questionnaire_id = q2.id
+                                 INNER JOIN multiple_choice_answer mca
+                                            on mca.answer = ANY (regexp_split_to_array(a.multiple_choice_answer_ids, ',')::bigint[])
+                                 INNER JOIN text_lang t2 on mca.answer = t2.id
+                                 INNER JOIN people p on a.people_id = p.id
                         WHERE p.token = ?
-                        AND q2.id = 1
+                          AND q2.id = 1
+                        GROUP BY t.text, a.multiple_choice_answer_ids, a.timestamp;
                     """,
                     RowMapper { rs: ResultSet, _ ->
                         AnswerWithQuestion(
                                 rs.getString("text"),
-                                rs.getString("content"),
+                                rs.getString("mca_as_text"),
                                 rs.getTimestamp("timestamp").toInstant().atZone(ZoneId.systemDefault())
                         )
                     },
