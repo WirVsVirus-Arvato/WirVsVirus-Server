@@ -1,6 +1,7 @@
 package org.wirvsvirushackathon.people
 
 import org.springframework.stereotype.Service
+import org.wirvsvirushackathon.answers.AnswerRepository
 
 @Service
 class PeopleService(val peopleRepository: PeopleRepository) {
