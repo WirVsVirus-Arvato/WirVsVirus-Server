@@ -2,7 +2,6 @@ package org.wirvsvirushackathon.people
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,7 +13,7 @@ class PeopleController(val peopleService: PeopleService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun register() = peopleService.createNewInfectedPeople().token
+    fun register() = peopleService.createNewInfectedPeople()
 
     @GetMapping("/{token}")
     fun getOnePeople(@PathVariable token: String) =
@@ -23,10 +22,10 @@ class PeopleController(val peopleService: PeopleService) {
     @PostMapping("/{token}/activate")
     @ResponseStatus(HttpStatus.ACCEPTED)
     fun activate(@PathVariable token: String) =
-        peopleService.activateByToken(token)
+            peopleService.activateByToken(token)
 
     @PostMapping("/{token}/deactivate")
     @ResponseStatus(HttpStatus.ACCEPTED)
     fun deactivate(@PathVariable token: String) =
-        peopleService.deactivateByToken(token)
+            peopleService.deactivateByToken(token)
 }

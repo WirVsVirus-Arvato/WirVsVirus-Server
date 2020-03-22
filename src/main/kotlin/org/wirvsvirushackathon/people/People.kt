@@ -10,6 +10,10 @@ data class People(
         val creationTimestamp: ZonedDateTime
 )
 
+data class TokenDto (
+    val token: String
+)
+
 enum class PeopleStatus {
     CREATED,
     ACTIVE,

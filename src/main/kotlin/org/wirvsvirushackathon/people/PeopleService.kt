@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 class PeopleService(val peopleRepository: PeopleRepository) {
     val tokenChars: String = "ABCDEFGHIJKMNPQRSTUVWXYZ0123456789"
 
-    fun createNewInfectedPeople(): People {
+    fun createNewInfectedPeople(): TokenDto {
         var tokenExists = true
         var token: String = ""
         while (tokenExists) {
