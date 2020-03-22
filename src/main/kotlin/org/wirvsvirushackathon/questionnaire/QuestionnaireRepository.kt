@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.stereotype.Repository
 import org.wirvsvirushackathon.text.TextRepository
+import java.io.InvalidObjectException
 import java.sql.ResultSet
 
 @Repository
@@ -20,15 +21,40 @@ class QuestionnaireRepository constructor(
                         )
             }, id
     )
-    fun findQuestionsByQuestionaireId(id: Long): List<Question> = jdbcTemplate.query(
-    "SELECT * FROM question WHERE questionnaire_id = ?",
+
+    fun findQuestionsByQuestionaireId(id: Long): List<IQuestion> = jdbcTemplate.query(
+    "SELECT question.id,question.type,text_lang.text FROM question " +
+            "LEFT JOIN text_lang ON(question_text = text_lang.id) " +
+            "WHERE questionnaire_id = ?",
     RowMapper { rs: ResultSet, _: Int ->
-        Question(rs.getLong("id"),
-               QuestionType.valueOf(rs.getString("type")),
-                textRepository.findById(rs.getLong("question_text"))
-        )
+        val question_type = QuestionType.valueOf(rs.getString("type"))
+        if(question_type == QuestionType.NUMERIC10){
+            Question(rs.getLong("id"),
+                    question_type,
+                    rs.getString("text")
+            )
+        }else if(question_type == QuestionType.MULTIPLECHOICE){
+            MultipleChoiceQuestion(rs.getLong("id"),
+                    question_type,
+                    rs.getString("text"),
+                    findChoices(rs.getLong("id"))
+            )
+        }else{
+            throw InvalidObjectException("Question type is not defined")
+        }
+
     }, id
     )
 
+    fun findChoices(questionId: Long): List<Choice> = jdbcTemplate.query(
+        "SELECT mca.id, text_lang.text FROM multiple_choice_answer mca " +
+                "LEFT JOIN text_lang ON(mca.answer = text_lang.id)  " +
+                "WHERE mca.question_id = ?",
+        RowMapper { rs: ResultSet, _: Int ->
+            Choice(rs.getLong("id"),
+                    rs.getString("text")
+            )
+        },questionId
+    )
 
 }
