@@ -16,7 +16,7 @@ class QuestionnaireRepository constructor(
             RowMapper { rs: ResultSet, _: Int ->
                 Questionnaire(rs.getLong("id"),
                         textRepository.findById(rs.getLong("title")),
-                        findQuestionsByQuestionnaireId(1)
+                        findQuestionsByQuestionnaireId(rs.getLong("id"))
                 )
             }, id
     )
