@@ -35,22 +35,21 @@ SELECT setval('question_id_seq', (SELECT MAX(id) FROM question)+1);
 
 Select insert_multiple_choices(1,'Welches Geschlecht haben sie?',array['M','W','X'],'SINGLECHOICE');
 Select insert_multiple_choices(1,'Sind sie Schwanger?' ,array['Ja','Nein'],'SINGLECHOICE');
-Select insert_multiple_choices(1,'Wie alt sind sie?',array['<20','20-30','30-40','40-50','50-60','60-70','70-80','80>'],'SINGLECHOICE');
+Select insert_multiple_choices(1,'Wie alt sind sie?',array['<40','40-60','50-60','60-80','80>'],'SINGLECHOICE');
 Select insert_multiple_choices(1,'Rauchen Sie?',array['Ja','Nein','Gelegentlich'],'SINGLECHOICE');
 Select insert_multiple_choices(1,'Hatten sie einen Kontakt zu einem bestätigten Corona Fall?',array['Ja','Nein','Verdachtsfall'],'SINGLECHOICE');
-Select insert_multiple_choices(1,'Wie viele Tage Liegt dieser ca. zurück?',array['1','2','3','4','5','6','7', '7>'],'SINGLECHOICE');
-Select insert_multiple_choices(1,'Wie eng war der Kontakt?',array['unter 1 Meter','unter 2 Meter', 'über 2 Meter'],'SINGLECHOICE');
-Select insert_multiple_choices(1,'Sind sie innerhalb der letzten 4 Wochen verreist?',array['Ja','Nein'],'SINGLECHOICE');
-Select insert_multiple_choices(1,'Wohin?',array['Innerhalb von Europa','Außerhalb von Europa'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Wie eng war ihr letzter Kontakt zu einem Corona Fall?',array['unter 1 Meter','unter 2 Meter', 'über 2 Meter'],'SINGLECHOICE');
+Select insert_multiple_choices(1,'Sind sie innerhalb der letzten 4 Wochen verreist?',array['Innerhalb von Europa','Außerhalb von Europa','nicht verreist'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Haben sie sich im Oktober 2019 bis heute gegen Grippe Impfen lassen?',array['Ja','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Nehmen sie aktuell folgende Medikamente ein?',array['Ja','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Arbeiten sie derzeit?',array['Ja','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Arbeiten sie derzeit im Homeoffice?',array['Ja','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Arbeiten sie derzeit mit anderen Menschen?',array['Ja','Nein'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Arbeiten sie derzeit mit anderen Menschen zusammen?',array['Ja','Nein', 'Nur im Homeoffice'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Leben sie mit anderen Menschen zusammen im Haushalt?',array['Ja','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Beschreiben sie ihre Wohnsituation?',array['Haus', 'Wohnung'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Beschreiben sie ihre Wohnsituation?',array['Haus', 'Wohnung','Brücke'],'MULTIPLECHOICE');
+
+Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE');
+Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE')>;
+
 
 INSERT INTO answer (question_id, people_id, content)
 VALUES (1, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 1'),
