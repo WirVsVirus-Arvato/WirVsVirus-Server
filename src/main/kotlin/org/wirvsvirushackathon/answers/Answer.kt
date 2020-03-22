@@ -17,7 +17,7 @@ data class AnswerWithQuestion(
 
 data class AnswerListDto(
         val token: String,
-        val answers: List<AnswerWithQuestion>
+        val answers: Map<String, List<AnswerWithQuestion>>
 )
 
 data class AnswerInputDTO(
