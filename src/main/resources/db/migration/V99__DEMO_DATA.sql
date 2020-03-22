@@ -51,10 +51,10 @@ Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 4 St
 Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE')>;
 
 
-INSERT INTO answer (question_id, people_id, content)
-VALUES (1, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 1'),
-       (2, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 2'),
-       (3, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 3'),
-       (4, (SELECT id FROM people WHERE token = 'YJJ-UND'), 'Anwort 4'),
-       (1, (SELECT id FROM people WHERE token = 'IR4-1XT'), 'Anwort 5');
+INSERT INTO answer (question_id, people_id, content, multiple_choice_answer_ids)
+VALUES (1, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '1'),
+       (2, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '3'),
+       (3, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '12'),
+       (4, (SELECT id FROM people WHERE token = 'YJJ-UND'), NULL, '22'),
+       (1, (SELECT id FROM people WHERE token = 'IR4-1XT'), NULL, '2');
 
