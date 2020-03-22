@@ -41,14 +41,14 @@ Select insert_multiple_choices(1,'Hatten sie einen Kontakt zu einem bestätigten
 Select insert_multiple_choices(1,'Wie eng war ihr letzter Kontakt zu einem Corona Fall?',array['unter 1 Meter','unter 2 Meter', 'über 2 Meter'],'SINGLECHOICE');
 Select insert_multiple_choices(1,'Sind sie innerhalb der letzten 4 Wochen verreist?',array['Innerhalb von Europa','Außerhalb von Europa','nicht verreist'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Haben sie sich im Oktober 2019 bis heute gegen Grippe Impfen lassen?',array['Ja','Nein'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE');
-Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE');
+Select insert_multiple_choices(1,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Arbeiten sie derzeit mit anderen Menschen zusammen?',array['Ja','Nein', 'Nur im Homeoffice'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Leben sie mit anderen Menschen zusammen im Haushalt?',array['Ja','Nein'],'MULTIPLECHOICE');
 Select insert_multiple_choices(1,'Beschreiben sie ihre Wohnsituation?',array['Haus', 'Wohnung','Brücke'],'MULTIPLECHOICE');
 
-Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE');
-Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall'],'MULTIPLECHOICE')>;
+Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 4 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE');
+Select insert_multiple_choices(2,'Welche Symptome hatten sie in den letzten 24 Stunden?',array['Husten','Fieber','Laufende Nase','Durchfall','Nein'],'MULTIPLECHOICE')>;
 
 
 INSERT INTO answer (question_id, people_id, content, multiple_choice_answer_ids)
