@@ -27,7 +27,9 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate, val answerR
     fun getPeopleByToken(token: String): People {
         try {
             return jdbcTemplate.queryForObject(
-                    "SELECT * FROM people WHERE token = :token",
+                    "SELECT * FROM people " +
+                         "left join (SELECT geo.longitude, geo.latitude, geo.people_id FROM geo ORDER BY id DESC LIMIT 1 ) as geo ON(geo.people_id = people.id) " +
+                         "WHERE token = :token",
                     MapSqlParameterSource().addValue("token", token))
             { resultSet, _ -> peopleRowMapper(resultSet) } ?: throw PeopleNotExistsException(token)
         } catch (e: EmptyResultDataAccessException) {
@@ -68,6 +70,8 @@ class PeopleRepository(val jdbcTemplate: NamedParameterJdbcTemplate, val answerR
                     token = resultSet.getString("token"),
                     status = PeopleStatus.valueOf(resultSet.getString("status")),
                     creationTimestamp = resultSet.getTimestamp("creation_timestamp").toInstant().atZone(ZoneId.systemDefault()),
+                    latitude = resultSet.getDouble("latitude"),
+                    longitude = resultSet.getDouble("longitude"),
                     initialQuestionnaireAnswers = answerRepository.getInitialQuestionnaireAnswersByPeopleToken(resultSet.getString("token"))
 //                    location = resultSet.getObject("location", Point::class.java)
             )

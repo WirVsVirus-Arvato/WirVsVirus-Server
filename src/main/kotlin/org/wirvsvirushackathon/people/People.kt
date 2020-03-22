@@ -8,6 +8,8 @@ data class People(
         val token: String,
         val status: PeopleStatus,
         val creationTimestamp: ZonedDateTime,
+        val latitude: Double,
+        val longitude: Double,
         val initialQuestionnaireAnswers: List<AnswerWithQuestion>
 )
 
